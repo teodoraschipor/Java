@@ -7,7 +7,7 @@ public class MedicalOffice {
     private int index;
 
     ///-------------CONSTRUCTOR---------------
-    public MedicalOffice(String name, String address, int numberOfEmployees) {
+    public MedicalOffice(String name, String address, int numberOfEmployees) {//numberOfEmployees = maximum number of employees the office can have
         if(numberOfEmployees > 0) {
             this.name = name;
             this.address = address;
@@ -30,6 +30,14 @@ public class MedicalOffice {
     }
 
 
+    public boolean removeEmployee(Personnel employee){
+        for(int i = 0; i < personnel.length; i++)
+            if(personnel[i] == employee) {
+                personnel[i] = null;
+                return true;
+            }
+        return false;
+    }
     ///------------GETTERS AND SETTERS-----------
     public String getName() {
         return name;
@@ -48,7 +56,7 @@ public class MedicalOffice {
     }
 
 
-    ///--------------DISPLAY MEDICALOFFICE------------
+    ///--------------DISPLAY MEDICAL OFFICE------------
     @Override
     public String toString() {
         return "MedicalOffice{" +

@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+
 public class Assistant extends Personnel implements SchedulesPatient{
 
     private boolean register = false;
@@ -7,8 +8,11 @@ public class Assistant extends Personnel implements SchedulesPatient{
 
     ///----------CONSTRUCTORS------------
     public Assistant(int id, String name){
-        setId(id);
-        setName(name);
+        if(id > 0){
+            setId(id);
+            setName(name);
+        }else throw new RuntimeException("ENTER A POSITIVE NUMBER");
+
     }
     public Assistant(Assistant assistant){
         this(assistant.getId(), assistant.getName());

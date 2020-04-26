@@ -5,29 +5,34 @@ import java.util.Arrays;
 
 public class Patient {
     private String name;
-    private int age;
+    private double age;
     ArrayList<String> prescriptions;
-    private int NumberOfPrescriptions;
+    private int numberOfPrescriptions;
 
     ///--------------CONSTRUCTORS---------------
 
 
-    public Patient(String name, int age, int numberOfPrescriptions) {
+    public Patient(String name, double age) {
+        if(age > 0){
         this.name = name;
         this.age = age;
-        NumberOfPrescriptions = numberOfPrescriptions;
-        if(numberOfPrescriptions < 0)
-            throw new RuntimeException("ENTER A POSITIVE NUMBER!");
+        this.numberOfPrescriptions = 0;
+        }
+        else throw new RuntimeException("ENTER A POSITIVE NUMBER!");
     }
 
     public Patient(Patient patient) {
         this.name = patient.name;
         this.age = patient.age;
-        this.NumberOfPrescriptions = patient.NumberOfPrescriptions;
+        this.numberOfPrescriptions = patient.numberOfPrescriptions;
         this.prescriptions = (ArrayList<String>) patient.prescriptions.clone();
     }
 
 
+    public void addPrescription(String prescription) {
+        this.numberOfPrescriptions += 1;
+        this.prescriptions.add(prescription);
+    }
     ///------------GETTERS AND SETTERS-------------
 
     public ArrayList<String> getPrescriptions() {
@@ -39,17 +44,13 @@ public class Patient {
     }
 
     public int getNumberOfPrescriptions() {
-        return NumberOfPrescriptions;
+        return numberOfPrescriptions;
     }
 
     public void setNumberOfPrescriptions(int numberOfPrescriptions) {
-        NumberOfPrescriptions = numberOfPrescriptions;
+        this.numberOfPrescriptions = numberOfPrescriptions;
     }
 
-     public void addPrescription(String prescription) {
-         this.NumberOfPrescriptions += 1;
-         this.prescriptions.add(prescription);
-    }
 
 
     public String getName() {
@@ -60,7 +61,7 @@ public class Patient {
         this.name = name;
     }
 
-    public int getAge() {
+    public double getAge() {
         return age;
     }
 
@@ -76,7 +77,7 @@ public class Patient {
         return "Patient{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", NumberOfPrescriptions=" + NumberOfPrescriptions +
+                ", Number of prescriptions=" + numberOfPrescriptions +
                 ", prescriptions=" + prescriptions +
                 '}';
     }

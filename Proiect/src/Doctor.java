@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Doctor extends Personnel implements TreatsPatient{
     Patient[] patients;
@@ -7,16 +6,15 @@ public class Doctor extends Personnel implements TreatsPatient{
     private int index;
 
 
-    ///----------CONSTRUCTORS-----------
-    public Doctor(int id, String name, int numberOfPatients) {
-        if(numberOfPatients > 0) {
+    ///----------CONSTRUCTOR-----------
+    public Doctor(int id, String name, int numberOfPatients) {//numberOfPatients = maximum number of patients the doctor can have
+        if(numberOfPatients > 0 && id > 0) {
             setId(id);
             setName(name);
             this.patients = new Patient[numberOfPatients];
         }
         else
-            throw new RuntimeException("ENTER A POSITIVE NUMBER!");
-
+            throw new RuntimeException("ENTER POSITIVE NUMBERS!");
     }
 
 
@@ -28,6 +26,10 @@ public class Doctor extends Personnel implements TreatsPatient{
         }
         else
             return false;
+    }
+    public void displayPatients(){
+        for(int i = 0; i < patients.length; i++)
+            System.out.println(patients[i]);
     }
     ///-----------GETTERS AND SETTERS-----------
     public Patient[] getPatients() {
@@ -94,7 +96,7 @@ public class Doctor extends Personnel implements TreatsPatient{
     public String toString() {//DO NOT DISPLAY THE PATIENTS
         return "Doctor{" +
                 "id="+ getId() + ", name=" + getName() +
-                ", number of patients="  + index+ "assistant's id=" + assistant.getId()+
+                ", number of patients="  + index+ ", assistant's id=" + assistant.getId()+
         '}';
     }
 }
