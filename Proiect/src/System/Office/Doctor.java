@@ -10,13 +10,14 @@ public class Doctor extends Personnel implements TreatsPatient {
     Assistant assistant;
     private boolean consult = false;
     private int index;
+    private int numberOfPatients = 50;
     ArrayList<Appointment> appointments;
     private static String csvDoctors = "Doctors.csv";
 
 
     ///----------CONSTRUCTOR-----------
-    public Doctor(int id, String name, int numberOfPatients) {//numberOfPatients = maximum number of patients the doctor can have
-        if(numberOfPatients > 0 && id > 0) {
+    public Doctor(int id, String name) {//numberOfPatients = maximum number of patients the doctor can have
+        if(id > 0) {
             setId(id);
             setName(name);
             this.patients = new Patient[numberOfPatients];
@@ -119,8 +120,8 @@ public class Doctor extends Personnel implements TreatsPatient {
     ///----------DISPLAY DOCTOR------------
     @Override
     public String toString() {
-        return "Doctor{" +
-                "patients=" + Arrays.toString(patients) +
+        return "Doctor{" + "id=" + getId() + ", name=" + getName() +
+                ", patients=" + Arrays.toString(patients) +
                 ", assistant=" + assistant +
                 ", consult=" + consult +
                 ", number of patients=" + index +
@@ -129,6 +130,6 @@ public class Doctor extends Personnel implements TreatsPatient {
     }
 
     public String toStringCsv(){
-        return "" + getId() + "," + getName() + "," + getIndex();
+        return "" + getId() + "," + getName();
     }
 }

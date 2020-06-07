@@ -7,7 +7,7 @@ import java.util.List;
 public class CSVReader {
 
     private static final String BASE_PATH = "C:/Users/teo/IdeaProjects/Proiect/src/myData/";
-    private static CSVReader single_instance = null;
+//    private static CSVReader single_instance = null;
     private File file;
     private FileReader reader;
     private List<String[]> data = new ArrayList<>();
@@ -33,12 +33,12 @@ public class CSVReader {
 
 
     }
-    public static CSVReader getInstance(String filename) throws IOException {
+/*    public static CSVReader getInstance(String filename) throws IOException {
         if (single_instance == null)
             single_instance = new CSVReader(filename);
         return single_instance;
 
-    }
+    }*/
     public void readCSV() {
         String line;
         try(BufferedReader br = new BufferedReader(reader)) {

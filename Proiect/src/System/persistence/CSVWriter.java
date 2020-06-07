@@ -6,12 +6,11 @@ import java.io.IOException;
 
 
 public class CSVWriter {
-    private static CSVWriter single_instance = null;
+   // private static CSVWriter single_instance = null;
     private FileWriter writer;
     private File file;
     private static final String path = "C:/Users/teo/IdeaProjects/Proiect/src/myData/";
 
-    //DE VAZUT DACA E PUBLIC SAU PRIVATE
     public CSVWriter(String filename) {
         try {
 
@@ -29,12 +28,19 @@ public class CSVWriter {
             System.err.println(e);
         }
     }
+    public CSVWriter(String fileName, Boolean append) {
+        try {
+            writer = new FileWriter((path + fileName), append);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public static CSVWriter getInstance(String filename) throws IOException {
+  /*  public static CSVWriter getInstance(String filename) throws IOException {
         if (single_instance == null)
             single_instance = new CSVWriter(filename);
         return single_instance;
-    }
+    }*/
 
     public void write(String data) {
         try {
@@ -43,8 +49,6 @@ public class CSVWriter {
         } catch(IOException e) {
             e.printStackTrace();
         }
-       // Audit a = Audit.getInstance();
-      //  a.log("Write to csv");
     }
 
     public void closeFile() {

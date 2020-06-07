@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Assistant extends Personnel implements SchedulesPatient {
 
     private boolean register = false;
+    private static String csvAssistants = "Assistants.csv";
     ArrayList<Appointment> appointments;
 
 
@@ -24,7 +25,7 @@ public class Assistant extends Personnel implements SchedulesPatient {
         this(assistant.getId(), assistant.getName());
     }
 
-//DE VAAAZZUUUUUTT!!!!!! PT FIECARE CAAAZZZ!!!!!! + CAZUL IN CARE CE VREAU SA INTRODUC ARE DURATA PREA MARE CA TRECE PESTE URMATOAREA PROGRAMARE
+//DE VAAAZZUUUUUTT!!!!!! PT FIECARE CAAAZZZ!!!!!! + CAZUL IN CARE CE VREAU SA INTRODUC ...ARE DURATA PREA MARE CA TRECE PESTE URMATOAREA PROGRAMARE
     public void addAppointment(Appointment appointment){
         int n = appointments.size();
         for(int i = 0; i < n-1; i ++)
@@ -93,5 +94,9 @@ public class Assistant extends Personnel implements SchedulesPatient {
         return "Assistant{"+
                 "appointments=" + appointments +
                 '}';
+    }
+
+    public String toStringCsv(){
+        return "" + getId() + "," + getName();
     }
 }

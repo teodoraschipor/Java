@@ -7,7 +7,6 @@ public class MedicalOffice {
     private String address;
     Personnel[] personnel;
     private int index;
-    private static String csvMedicalOffices = "MedicalOffices.csv";
 
     ///-------------CONSTRUCTOR---------------
     public MedicalOffice(String name, String address, int numberOfEmployees) {//numberOfEmployees = maximum number of employees the office can have
@@ -86,7 +85,5 @@ public class MedicalOffice {
                 '}';
     }
 
-    public String toStringCsv(){
-        return "" + getName() + "," + getAddress() + "," + personnel.length;
-    }
+
 }

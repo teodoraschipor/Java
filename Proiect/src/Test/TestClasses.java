@@ -1,13 +1,35 @@
 package Test;
 
+import System.DataBase.DataBase;
 import System.Office.Assistant;
 import System.Office.Doctor;
 import System.Office.MedicalOffice;
 import System.Office.Patient;
+import System.Services.Services;
+import System.persistence.Audit;
+import System.persistence.CSVReader;
+import System.persistence.CSVWriter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class TestClasses {
-    public static void main(String[] args) {
 
+    private static final Services patientServices = new Services();
+    private static List<Patient> patients = new ArrayList<Patient>();
+    private static final Services doctorServices = new Services();
+    private static List<Doctor> doctors = new ArrayList<Doctor>();
+
+    private static void open() {
+        DataBase.importDoctors();
+        DataBase.importPatients();
+        DataBase.importAssistants();
+        DataBase.importPrescriptions();
+    }
+    public static void main(String[] args) {
+/*
+    //---------------------ETAPA I----------------------
         MedicalOffice office = new MedicalOffice("Regina Maria", "Bulevardul Constantin Brancoveanu, nr 29", 8);
         System.out.println(office);
 
@@ -34,7 +56,7 @@ public class TestClasses {
         }catch (NullPointerException e){
             System.out.println(e);
         }*/
-
+/*
         d2.addPatient(p2);
         d2.addPatient(p3);
         d2.displayPatients();
@@ -55,5 +77,93 @@ public class TestClasses {
         for(int i = 0; i < allOffices.length; i++)
             System.out.println(allOffices[i]);
 
+*/
+
+        //----------------------ETAPA II-----------------------
+        open();
+
+        try{
+
+            boolean status = true; // the app is still running
+            while(status) {
+                System.out.println("\nSelect your action:\n" +
+                        "0. Exit Program\n" +
+                        "1. Insert a patient\n" +
+                        "2. Delete a patient\n" +
+                        "3. Insert a doctor\n" +
+                        "4. Delete a doctor\n");
+                System.out.print("Your choice: ");
+                Scanner scan = new Scanner(System.in);
+                int choice = scan.nextInt();
+                switch (choice) {
+                    case 0: {
+                        status = false;
+                        break;
+                    }
+
+                    case 1: {
+                        System.out.println("Insert your info:");
+                        System.out.print("Full Name: ");
+                        scan.nextLine();
+                        String name = scan.nextLine();
+                        System.out.print("Age: ");
+                        int age = scan.nextInt();
+                        Patient currentPatient = new Patient(name, age);
+                        patientServices.getDatabase().addPatient(currentPatient);
+                        break;
+
+                    }
+                    case 2: {
+                        System.out.println("Do you want to delete a patient from DataBase?");
+                        System.out.println("Options: " + "1.Yes, " + "2.No");
+                        System.out.print("Your selection: ");
+                        int answer = scan.nextInt();
+                        if(answer == 2)
+                            break;
+                        System.out.println("All the patients from DataBase:");
+                        System.out.println(DataBase.getPatients());
+                        System.out.println("Select a patient from the list (by entering his name)");
+                        System.out.print("The patient you select is: ");
+                        scan.nextLine();
+                        String selection = scan.nextLine();
+                        patientServices.getDatabase().deletePatientInsertion(selection);
+                        break;
+                    }
+                    case 3: {
+                        System.out.println("Insert your info:");
+                        System.out.print("ID: ");
+                        int id = scan.nextInt();
+                        System.out.print("Full Name: ");
+                        scan.nextLine();
+                        String name = scan.nextLine();
+                        Doctor currentDoctor = new Doctor(id, name);
+                        doctorServices.getDatabase().addDoctor(currentDoctor);
+                        break;
+
+                    }
+                    case 4: {
+                        System.out.println("Do you want to delete a doctor from DataBase?");
+                        System.out.println("Options: " + "1.Yes, " + "2.No");
+                        System.out.print("Your selection: ");
+                        int answer = scan.nextInt();
+                        if(answer == 2)
+                            break;
+                        System.out.println("All the doctors from DataBase:");
+                        System.out.println(DataBase.getDoctors());
+                        System.out.println("Select a doctor from the list (by entering his name)");
+                        System.out.print("The doctor you select is: ");
+                        scan.nextLine();
+                        String selection = scan.nextLine();
+                        doctorServices.getDatabase().deleteDoctorInsertion(selection);
+                        break;
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DataBase.getAudit().closeFile();
+        }
     }
 }

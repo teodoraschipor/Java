@@ -1,0 +1,6 @@
+
+Inserted Patient{name='Teodora Schipor', age=20.0, prescriptions=[], numberOfPrescriptions=0, appointmentTime='null'} to Patients.csv, 2020-06-07 18:39:35.161
+Inserted Patient{name='Stefana Dascalu', age=19.0, prescriptions=[], numberOfPrescriptions=0, appointmentTime='null'} to Patients.csv, 2020-06-07 18:39:54.584
+Deleted Stefana Dascalu from Patients.csv, 2020-06-07 18:40:08.525
+Inserted Doctor{id=12, name=dr. Bandac Razvan, patients=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], assistant=null, consult=false, number of patients=0, appointments=null} to Doctors.csv, 2020-06-07 18:40:33.236
+Deleted dr. Bandac Razvan from Doctors.csv, 2020-06-07 18:41:35.868
